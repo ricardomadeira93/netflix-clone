@@ -2,13 +2,15 @@ import { useCallback, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import Input from '@/components/Input';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-
   const [variant, setVariant] = useState('login');
+  const router = useRouter();
 
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) =>
@@ -16,17 +18,34 @@ const Auth = () => {
     );
   }, []);
 
+  // Login
+  const login = useCallback(async () => {
+    try {
+      await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: '/',
+      });
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, router]);
+
+  // Register
   const register = useCallback(async () => {
     try {
-      await axios.post('/api/register', {
+      await axios.post('api/register', {
         email,
         name,
         password,
       });
+      login();
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [email, name, password, login]);
 
   return (
     // Auth Background
@@ -47,19 +66,20 @@ const Auth = () => {
               {/* Switch between Login or Register */}
               {variant === 'register' && (
                 <Input
-                  label='Email'
-                  onChange={(ev: any) => setEmail(ev.target.value)}
-                  id='email'
-                  type='email'
-                  value={email}
+                  label='Username'
+                  onChange={(ev: any) => setName(ev.target.value)}
+                  id='name'
+                  type=''
+                  value={name}
                 />
               )}
+
               <Input
-                label='Username'
-                onChange={(ev: any) => setName(ev.target.value)}
-                id='name'
-                type=''
-                value={name}
+                label='Email'
+                onChange={(ev: any) => setEmail(ev.target.value)}
+                id='email'
+                type='email'
+                value={email}
               />
               <Input
                 label='Password'
@@ -69,20 +89,23 @@ const Auth = () => {
                 value={password}
               />
             </div>
-            <button className='bg-teal-100 py-3 text-teal-950  text-md font-semibold rounded-md w-full mt-10 hover:bg-green-400 transition'>
+            <button
+              onClick={variant === 'login' ? login : register}
+              className='bg-teal-100 py-3 text-teal-950  text-md font-semibold rounded-md w-full mt-10 hover:bg-green-400 transition'
+            >
               {variant === 'login' ? 'Login' : 'Sign Up'}
             </button>
             <div className='text-center'>
               <p className='text-neutral-500 mt-12 '>
                 {variant === 'login'
                   ? 'First time using Netflix?'
-                  : 'Already have an account?'}{' '}
+                  : 'Already have an account?'}
               </p>
               <span
                 onClick={toggleVariant}
                 className='text-white ml-1 hover:underline cursor-pointer'
               >
-                {variant === 'login' ? 'Create an Account' : 'Sign In'}
+                {variant === 'login' ? 'Create an Account' : 'Login'}
               </span>
             </div>
           </div>
