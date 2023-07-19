@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import { getSession } from 'next-auth/react';
 import { NextPageContext } from 'next';
 import Navbar from '@/components/Navbar';
+import Billboard from '@/components/Billboard';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,5 +26,6 @@ export async function getServerSideProps(context: NextPageContext) {
 export default function Home() {
   return <>
     <Navbar/>
+    <Billboard/>
   </>;
 }
