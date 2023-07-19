@@ -24,9 +24,9 @@ const Profiles = () => {
   const { data: user } = useCurrentUser();
   const router = useRouter();
   return (
-    <div className='flex items-center h-full justify-center'>
+    <div className='flex bg-background items-center h-full justify-center'>
       <div className='flex flex-col'>
-        <h1 className='text-3xl md:text-6xl text-black text-center'>
+        <h1 className='text-3xl md:text-6xl text-text text-center'>
           Who is watching?
         </h1>
         <div className='flex items-center justify-center gap-8 mt-10'>
@@ -40,7 +40,7 @@ const Profiles = () => {
                   alt='Profile'
                 />
               </div>
-              <div className='mt-4 text-gray-400 transition duration-300 text-2xl text-center group-hover:text-black'>
+              <div className='mt-4 text-gray-600 transition duration-300 text-2xl text-center group-hover:text-text'>
                 {user?.name}
               </div>
             </div>

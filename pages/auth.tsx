@@ -50,15 +50,15 @@ const Auth = () => {
     // Auth Background
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
       {/* Auth Container */}
-      <div className='bg-black w-full h-full lg:bg-opacity-70'>
+      <div className='bg-background w-full h-full lg:bg-opacity-70'>
         {/* Navigation */}
         <nav className='py-5 px-12'>
           <Image src='/images/logo.png' width={100} height={12} alt='Logo' />
         </nav>
         {/* Form */}
         <div className='flex justify-center'>
-          <div className='bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:h-2/5 lg:max-w-md rounded-md w-full'>
-            <h2 className='text-white text-3xl mb-8 font-semibold'>
+          <div className='bg-background bg-opacity-70 px-16 py-16 self-center mt-2 lg:h-2/5 lg:max-w-md rounded-md w-full'>
+            <h2 className='text-text text-3xl mb-8 font-semibold'>
               {variant === 'login' ? 'Sign in' : 'Register'}
             </h2>
             <div className='flex flex-col gap-4'>
@@ -90,14 +90,14 @@ const Auth = () => {
             </div>
             <button
               onClick={variant === 'login' ? login : register}
-              className='bg-teal-100 py-3 text-teal-950  text-md font-semibold rounded-md w-full mt-10 hover:bg-green-400 transition'
+              className='bg-primary py-3 text-text text-md font-semibold rounded-md w-full mt-10 hover:bg-opacity-80 duration-150'
             >
               {variant === 'login' ? 'Login' : 'Sign Up'}
             </button>
             <div className='flex flex-row items-center gap-4 mt-8 justify-center'>
               <div
                 onClick={() => signIn('google', { callbackUrl: '/profiles' })}
-                className='w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition'
+                className='w-10 h-10 bg-text rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition'
               >
                 <FcGoogle size={25} />
               </div>
@@ -116,7 +116,7 @@ const Auth = () => {
               </p>
               <span
                 onClick={toggleVariant}
-                className='text-white ml-1 hover:underline cursor-pointer'
+                className='text-text ml-1 hover:underline cursor-pointer'
               >
                 {variant === 'login' ? 'Create an Account' : 'Login'}
               </span>
