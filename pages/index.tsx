@@ -33,6 +33,7 @@ export default function Home() {
       <Billboard />
       <div className='pb-40 text-text'>
         <MovieList title='Trending Now' data={movies} />
+        <MovieList title='Favorites' data={movies} />
       </div>
     </>
   );
