@@ -6,9 +6,9 @@ const Billboard = () => {
   const { data } = useBillboard();
 
   return (
-    <div className='relative h-[56.25vw]'>
+    <div className='relative h-[46.30vw]'>
       <video
-        className='w-full h-[56.25vw] object-cover brightness-[60%]'
+        className='w-full h-[46.30vw] object-cover brightness-[60%]'
         poster={data?.thumbnailUrl}
         src={data?.videoUrl}
         autoPlay

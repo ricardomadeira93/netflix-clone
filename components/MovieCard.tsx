@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 import { GrPlay } from 'react-icons/gr';
+import FavoriteButton from './FavoriteButton';
+
 
 interface MovieCardProps {
   data: Record<string, any>;
@@ -32,15 +34,16 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             >
               <GrPlay size={20} />
             </div>
+            <FavoriteButton movieId={data?.id} />
           </div>
           <p className='text-green-400 font-semibold mt-4'>
             New <span className='text-text'>2023</span>
           </p>
-          <div className="flex flex-row mt-4 gap-2 items-center">
-            <p className="text-text text-[10px} lg:text-sm">{data.duration}</p>
+          <div className='flex flex-row mt-4 gap-2 items-center'>
+            <p className='text-text text-[10px} lg:text-sm'>{data.duration}</p>
           </div>
-          <div className="flex flex-row mt-4 gap-2 items-center">
-            <p className="text-text text-[10px} lg:text-sm">{data.genre}</p>
+          <div className='flex flex-row mt-4 gap-2 items-center'>
+            <p className='text-text text-[10px} lg:text-sm'>{data.genre}</p>
           </div>
         </div>
       </div>
