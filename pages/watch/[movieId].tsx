@@ -56,9 +56,7 @@ const Watch = () => {
       <video
         autoPlay
         controls
-        className={`h-full w-full ${
-          showTitle ? 'opacity-100' : 'opacity-0'
-        } transition-opacity`}
+        className='`h-full w-full'
         src={data?.videoUrl}
       ></video>
     </div>
