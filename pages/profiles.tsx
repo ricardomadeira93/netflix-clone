@@ -5,6 +5,7 @@ import useCurrentUser from '@/hooks/useCurrentUser';
 import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context: NextPageContext) {
+ 
   const session = await getSession(context);
 
   if (!session) {
@@ -34,7 +35,7 @@ const Profiles = () => {
             <div className='group flex-row w-44 mx-auto'>
               <div className='w-44 h-44 rounded-md flex items-center justify-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-black overflow-hidden'>
                 <Image
-                  src='/images/default-blue.png'
+                  src={user?.image}
                   width={176}
                   height={176}
                   alt='Profile'

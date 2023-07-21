@@ -6,10 +6,12 @@ import { useState, useCallback, useEffect } from 'react';
 import NavbarItem from './NavbarItem';
 import MobileMenu from './MobileMenu';
 import AccountMenu from './AccountMenu';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 const TOP_OFFSET = 66;
 
 const Navbar = () => {
+  const {data} = useCurrentUser()
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
@@ -83,7 +85,7 @@ const Navbar = () => {
           >
             <div className='w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden'>
               <Image
-                src='/images/default-blue.png'
+                src={data?.image}
                 width={50}
                 height={50}
                 alt='default'
